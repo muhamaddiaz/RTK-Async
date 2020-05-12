@@ -6,18 +6,20 @@ import { fetchCorona } from '../../api/LmaoCorona'
 type CoronaType = {
   isLoading: boolean
   data: StateInfo[]
+  selected: StateInfo | undefined
 }
 
 const initialState: CoronaType = {
   isLoading: false,
-  data: []
+  data: [],
+  selected: undefined
 }
 
 const CoronaSlice = createSlice({
   name: "corona",
   initialState,
   reducers: {
-    populateCorona: (state, action: PayloadAction<Array<StateInfo>>) => {
+    populateCorona: (state, action: PayloadAction<StateInfo[]>) => {
       action.payload.map(a => state.data.push(a))
     },
     startLoading: (state) => {
@@ -25,6 +27,9 @@ const CoronaSlice = createSlice({
     },
     clearLoading: (state) => {
       state.isLoading = false
+    },
+    selectRegion: (state, action: PayloadAction<String>) => {
+      state.selected = state.data.find(_data => _data.state === action.payload)
     }
   }
 })
@@ -32,7 +37,8 @@ const CoronaSlice = createSlice({
 export const {
   populateCorona,
   startLoading,
-  clearLoading
+  clearLoading,
+  selectRegion
 } = CoronaSlice.actions
 
 export const fetchData = (): AppThunk => async dispatch => {

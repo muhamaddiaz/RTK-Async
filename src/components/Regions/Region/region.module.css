@@ -1,0 +1,30 @@
+.Region {
+    background-color: #dff9fb;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.Region h1 {
+    margin-bottom: 15px;
+}
+
+.Region ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.Region ul li {
+    flex: 1;
+    text-align: center;
+    background-color: lightseagreen;
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 1.2rem;
+    border-radius: 2px;
+}
+
+.Region ul li:last-child {
+    margin-right: 0;
+}

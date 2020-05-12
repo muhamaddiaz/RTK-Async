@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../features/Corona/CoronaSlice'
 import { RootState } from '../../app/RootReducer'
+import Regions from "../../components/Regions/Regions";
 
 const Corona = () => {
   const dispatch = useDispatch()
@@ -15,19 +16,13 @@ const Corona = () => {
     dispatch(fetchData())
   }, [dispatch])
 
+  if (isLoading) {
+    return <div>Fetching Some Data!</div>
+  }
+
   return (
     <div>
-      { isLoading ? (<div>Still Fetching</div>) : (
-        <div>
-          <ul>
-            {
-              data.map((d, idx) => (
-                <li key={idx}>{d.state}</li>
-              ))
-            }
-          </ul>
-        </div>
-      )}
+      <Regions StateInfo={data} />
     </div>
   )
 }

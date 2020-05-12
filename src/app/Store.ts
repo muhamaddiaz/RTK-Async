@@ -6,8 +6,6 @@ const Store = configureStore({
   reducer: RootReducer
 })
 
-export type AppDispatch = typeof Store.dispatch
-
 export type AppThunk = ThunkAction<void, RootState, unknown, Action<any>>
 
 export default Store
